@@ -23,30 +23,30 @@
   <script src="js/control.js"></script>
   
   <script>
-    $('.aniview').AniView();
     $(document).ready(function() {
-      var source_id = '1Ithi4iJM4wnaH21hGscok4cImNtSLZ9D4BCruiJsZgU';
-      $.ajax({
-          url: 'https://spreadsheets.google.com/feeds/list/' + source_id + '/1/public/values?alt=json',
-          async: false,
-          type: 'GET',
-        })
-        .done(function(data) {
-          console.log("success");
-          for (var i = 0 ; i < (data.feed.entry).length ; i++)
-          {
-            var text = data.feed.entry[i]['gsx$text']['$t'];
-            var img = data.feed.entry[i]['gsx$src']['$t'];
-            var photo_inner = $.parseHTML("<li><a class=\"ns-img\" href=\"" + img + "\"/></a><div class=\"caption\">"+ text +"</div></li>");
-            $('#inphoto').append(photo_inner);
-          }
-        })
-        .fail(function() {
-          console.log("Home photo error");
-        })
-        .always(function() {
-          console.log("complete");
-        });
+      // $('.aniview').AniView();
+      // var source_id = '1Ithi4iJM4wnaH21hGscok4cImNtSLZ9D4BCruiJsZgU';
+      // $.ajax({
+      //     url: 'https://spreadsheets.google.com/feeds/list/' + source_id + '/1/public/values?alt=json',
+      //     async: false,
+      //     type: 'GET',
+      //   })
+      //   .done(function(data) {
+      //     console.log("success");
+      //     for (var i = 0 ; i < (data.feed.entry).length ; i++)
+      //     {
+      //       var text = data.feed.entry[i]['gsx$text']['$t'];
+      //       var img = data.feed.entry[i]['gsx$src']['$t'];
+      //       var photo_inner = $.parseHTML("<li><a class=\"ns-img\" href=\"" + img + "\"/></a><div class=\"caption\">"+ text +"</div></li>");
+      //       $('#inphoto').append(photo_inner);
+      //     }
+      //   })
+      //   .fail(function() {
+      //     console.log("Home photo error");
+      //   })
+      //   .always(function() {
+      //     console.log("complete");
+      //   });
 
       function getFieldValue(myform, fieldName) {
         var text = myform.form('get value', fieldName);
@@ -55,6 +55,7 @@
       }
 
       $("#contactBtn").click(function() {
+        console.log("123");
         var form = $(".ui.form");  
         var formData = {
             yourName: getFieldValue(form, 'yourname'),
@@ -62,7 +63,7 @@
             tellMeWhat: getFieldValue(form, 'tellmewhat')
         };
         $.ajax({
-            url: 'https://docs.google.com/spreadsheets/d/1L-WQBC-PQxkhujK08ZH50xdvC_UsiDu1COeqbb6A_x0/pubhtml',
+            url: 'https://script.google.com/macros/s/AKfycbxh5rCXBg4zL13NdwrwDjljstAqJTZBskmNttWkc2aPLVgxwQPb/exec',
             type: 'POST',
             dataType: 'json',
             data: formData,
@@ -339,117 +340,6 @@
     
 </body>
 </html>    
-
-
-<!-- Ajax get -->
-<script>
-  var source_id = '';
-  $.ajax({
-      url: 'https://spreadsheets.google.com/feeds/list/' + source_id + '/1/public/values?alt=json',
-      async: false,
-      type: 'GET',
-    })
-    .done(function(data) {
-      console.log("success");
-      for (var i = 0 ; i < (data.feed.entry).length ; i++)
-      {
-        var text = data.feed.entry[i]['gsx$text']['$t'];
-        var img = data.feed.entry[i]['gsx$src']['$t'];
-        var photo_inner = $.parseHTML("<li><a class=\"ns-img\" href=\"" + img + "\"/></a><div class=\"caption\">"+ text +"</div></li>");
-        $('#inphoto').append(photo_inner);
-      }
-    })
-    .fail(function() {
-      console.log("Home photo error");
-    })
-    .always(function() {
-      console.log("complete");
-    });
-
-</script>
-
-
-<!-- Ajax post -->
-<script>
-  function getFieldValue(myform, fieldName) {
-    var text = myform.form('get value', fieldName);
-    if (text != "") return text;
-    else return "none";
-  }
-
-  $("#contactBtn").click(function() {
-    var form = $(".ui.form");  
-    var formData = {
-        yourName: getFieldValue(form, 'yourname'),
-        yourEmail: getFieldValue(form, 'youremail'),
-        tellMeWhat: getFieldValue(form, 'tellmewhat')
-    };
-    $.ajax({
-        url: 'https://docs.google.com/spreadsheets/d/1L-WQBC-PQxkhujK08ZH50xdvC_UsiDu1COeqbb6A_x0/pubhtml',
-        type: 'POST',
-        dataType: 'json',
-        data: formData,
-        success: function(){console.log('yes')},
-        fail: function(){console.log('no')}
-    });
-  });  
-</script>
-
-
-<!-- 動態滑動效果 -->
-<script>
-  $("#mbtn1").click(function(){
-      $('html,body').animate({scrollTop:$('#photoSlide').offset().top},600);
-    
-  });
-</script>
-
-
-<!-- 顯示modal表格 -->
-<script>
-  $("#showmybtn").click(function(){
-    $('.ui.modal')
-      .modal('show');
-  });
-</script>
-
-<!-- contact me 表格控制 -->
-<script>
-  $('.ui.form.segment')
-    .form({
-      on: 'blur',
-      fields: {
-        empty: {
-          identifier  : 'yourname',
-          rules: [
-            {
-              type   : 'empty',
-              prompt : 'Please enter your name'
-            }
-          ]
-        },
-        email: {
-          identifier  : 'youremail',
-          rules: [
-            {
-              type   : 'email',
-              prompt : 'Please enter a valid e-mail'
-            }
-          ]
-        },
-        tellempty: {
-          identifier  : 'tellmewhat',
-          rules: [
-            {
-              type   : 'empty',
-              prompt : 'Please enter value in You want to tell me what'
-            }
-          ]
-        }
-      }
-    });
-</script>
-
 
 
 
