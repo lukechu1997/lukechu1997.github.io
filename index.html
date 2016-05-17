@@ -79,7 +79,7 @@
 <body>
   <!-- 這裡放 menu bar (nav bar) -->
    <div class="ui fixed grey inverted four item labeled icon menu">
-    <a id="mbtn1" class="item">
+    <a id="mbtn1" class="item" href="03_AI/demo/demo.html">
       <i class="gamepad icon"></i>
       Home
     </a>
@@ -134,7 +134,7 @@
 
   <!-- 這裡放 自我介紹 -->
   <div id="selfIntroduction" class="section">
-     <div class="space"></div>
+     <div class="space">
 
     <div class="ui stackable three column grid container">
       <!-- my photo card -->
@@ -200,6 +200,7 @@
           </div>
         </div>
       </div>
+    </div>
       <!-- show myskill-->
       <!-- <div id='myskill' class="column">
         <i class="big configure icon">Language</i>
@@ -279,24 +280,25 @@
   </div>
   <!-- 這裡放 聯絡我 -->
   <div id="contactMe" class="section">
-    <div class="space"></div>
-    <div class="ui one column centered grid container">
-      <form class="ui large form segment">
-        <div class="field">
-          <label>Your name</label>
-          <input name="yourname" type="text">
-        </div>
-        <div class="field">
-          <label>Your email</label>
-          <input name="youremail" type="text">
-        </div>
-        <div class="field">
-          <label>You want to tell me what</label>
-          <textarea name="tellmewhat" type="text"></textarea>
-        </div>
-        <div id="contactBtn" class="ui olive submit button">Submit</div>
-        <div class="ui error message"></div>
-      </form>
+    <div class="space">
+      <div class="ui one column centered grid container">
+        <form class="ui large form segment">
+          <div class="field">
+            <label>Your name</label>
+            <input name="yourname" type="text">
+          </div>
+          <div class="field">
+            <label>Your email</label>
+            <input name="youremail" type="text">
+          </div>
+          <div class="field">
+            <label>You want to tell me what</label>
+            <textarea name="tellmewhat" type="text"></textarea>
+          </div>
+          <div id="contactBtn" class="ui olive submit button">Submit</div>
+          <div class="ui error message"></div>
+        </form>
+      </div>
     </div>
   </div>
   <!-- 這裡放 footer -->
